@@ -1,6 +1,6 @@
 import React from "react";
 
-function Plate({ name, price, img }) {
+function Dish({ name, price, img }) {
     return (
         <div>
             <img src={img} alt={name} />
@@ -10,4 +10,4 @@ function Plate({ name, price, img }) {
     )
 }
 
-export default Plate;
+export default Dish;
