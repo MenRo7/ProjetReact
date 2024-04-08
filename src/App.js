@@ -1,4 +1,5 @@
 import './App.css';
+import Footer from './components/Footer';
 import Header from './components/Header';
 import Dish from './components/Dish';
 
@@ -22,7 +23,7 @@ function App() {
           price="15" 
           img="https://cdn.pixabay.com/photo/2021/02/04/03/57/mole-5980185_960_720.jpg"
         />
-      </main>
+      <Footer/>
     </>
   );
 }
