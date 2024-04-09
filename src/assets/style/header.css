@@ -1,36 +1,4 @@
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    background-color: #f8f9fa;
-}
-
 .logo {
     height: 50px;
     width: 50px;
-    margin: 0 0 0 100px;
-}
-
-.navbar-nav {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    margin: 0 100px 0 0;
-    padding: 0;
-
-}
-
-.nav-item {
-    margin-left: 15px;
-}
-
-.nav-link {
-    color: #000000;
-    text-decoration: none;
-    font-size: 15px;
-}
-
-.nav-link:hover {
-    color: #007bff;
 }

@@ -1,25 +1,4 @@
-.dish-card {
-    width: 450px;
-    margin: 0 20px 0 20px;
-    border-width: 2px;
-    border-radius: 10px;
-    background-color: #f8f9fa;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-}
-
-.dish-card .card-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 0;
-}
-
-.dish-card .card-text {
-    font-size: 16px;
-}
-
 .dish-img {
     height: 250px;
-    width: 450px;
-    border-radius: 10px 10px 0 0;
+    object-fit: cover;
 }
