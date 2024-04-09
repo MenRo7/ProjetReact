@@ -1,16 +1,20 @@
 import React from "react";
 import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import '../assets/style/dish.css';
 
-function Dish({ name, price, img }) {
+const Dish = ({ name, price, img, slug }) => {
+    const to = `/plat/${slug}`;
     return (
-        <Card className="dish-card">
-            <Card.Img src={img} className="dish-img" />
-            <Card.Body>
-                <Card.Title>{name}</Card.Title>
-                <Card.Text>{price} €</Card.Text>
-            </Card.Body>
-        </Card>
+        <Link to={to} className="dish-link">
+            <Card className="dish-card">
+                <Card.Img src={img} className="dish-img" />
+                <Card.Body>
+                    <Card.Title>{name}</Card.Title>
+                    <Card.Text>{price} €</Card.Text>
+                </Card.Body>
+            </Card>
+        </Link>
     )
 }
 
