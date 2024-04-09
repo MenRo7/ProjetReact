@@ -1,12 +1,16 @@
 import React from "react";
+import { Card } from 'react-bootstrap';
+import '../assets/style/dish.css';
 
 function Dish({ name, price, img }) {
     return (
-        <div>
-            <img src={img} alt={name} />
-            <h2>{name}</h2>
-            <p>{price} €</p>
-        </div>
+        <Card className="dish-card">
+            <Card.Img src={img} className="dish-img" />
+            <Card.Body>
+                <Card.Title>{name}</Card.Title>
+                <Card.Text>{price} €</Card.Text>
+            </Card.Body>
+        </Card>
     )
 }
 
