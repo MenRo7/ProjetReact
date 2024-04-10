@@ -1,9 +1,10 @@
 import React from 'react';
-import { Navbar, Nav, NavLink, Container } from 'react-bootstrap';
+import { Navbar, Nav, Container } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 import logo from '../assets/images/logo.webp';
 import '../assets/style/header.css';
 
-function Header() {
+const Header = () => {
     return (
         <header>
             <Navbar>
@@ -13,8 +14,8 @@ function Header() {
                     </Navbar.Brand>
                     <Navbar.Collapse className="justify-content-end">
                         <Nav>
-                            <NavLink exact to="/">Accueil</NavLink>
-                            <NavLink to="/about">À propos</NavLink>
+                            <NavLink className="nav-link" to="/">Accueil</NavLink>
+                            <NavLink className="nav-link" to="/about">À propos</NavLink>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
