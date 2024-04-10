@@ -1,9 +1,14 @@
-// Home.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Dish from '../components/Dish';
 
 const Home = () => {
+    const [showNewOnly, setShowNewOnly] = useState(false);
+
+    const handleShowNewOnly = () => {
+        setShowNewOnly(!showNewOnly);
+    };
+
     const dishes = [
         {
             name: "Tacos à l'unité",
@@ -28,10 +33,20 @@ const Home = () => {
         }
     ];
 
+    const filteredDishes = showNewOnly ? dishes.filter(dish => dish.isNew) : dishes;
+
     return (
         <Container>
+            <Row>
+                <button onClick={handleShowNewOnly} className="text-center">
+                    {showNewOnly ? 'Voir tous les plats' : 'Nouveautés uniquement'}
+                </button>
+            </Row>
+            <Row>
+                <h1 className="text-center">Nos plats</h1>
+            </Row>
             <Row className="dish-container">
-                {dishes.map((dish, index) => (
+                {filteredDishes.map((dish, index) => (
                     <Col key={index}>
                         <Dish
                             name={dish.name}
