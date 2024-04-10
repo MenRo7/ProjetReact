@@ -1,39 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Dish from '../components/Dish';
+import dishesData from '../datas/dishes.json';
 
 const Home = () => {
     const [showNewOnly, setShowNewOnly] = useState(false);
+    const [dishes, setDishes] = useState([]);
+
+    useEffect(() => {
+        const filterDishes = () => {
+            const filteredDishes = showNewOnly ? dishesData.dishes.filter(dish => dish.isNew) : dishesData.dishes;
+            setDishes(filteredDishes);
+        };
+        filterDishes();
+    }, [showNewOnly]);
 
     const handleShowNewOnly = () => {
         setShowNewOnly(!showNewOnly);
     };
-
-    const dishes = [
-        {
-            name: "Tacos à l'unité",
-            price: "3",
-            img: "https://cdn.pixabay.com/photo/2016/08/23/08/53/tacos-1613795_960_720.jpg",
-            slug: "tacos",
-            isNew: true
-        },
-        {
-            name: "Enchiladas",
-            price: "12",
-            img: "https://cdn.pixabay.com/photo/2014/01/14/22/13/mexican-245240_960_720.jpg",
-            slug: "enchiladas",
-            isNew: false
-        },
-        {
-            name: "Mole Poblano",
-            price: "15",
-            img: "https://cdn.pixabay.com/photo/2021/02/04/03/57/mole-5980185_960_720.jpg",
-            slug: "mole-poblano",
-            isNew: false
-        }
-    ];
-
-    const filteredDishes = showNewOnly ? dishes.filter(dish => dish.isNew) : dishes;
 
     return (
         <Container>
@@ -46,7 +30,7 @@ const Home = () => {
                 <h1 className="text-center">Nos plats</h1>
             </Row>
             <Row className="dish-container">
-                {filteredDishes.map((dish, index) => (
+                {dishes.map((dish, index) => (
                     <Col key={index}>
                         <Dish
                             name={dish.name}
