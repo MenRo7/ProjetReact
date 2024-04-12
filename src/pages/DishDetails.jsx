@@ -4,9 +4,10 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import dishesData from '../datas/dishes.json';
 import NotFound from './NotFound';
 
-const DishDetails = () => {
+const DishDetails = ({ addToCart }) => {
     const { slug } = useParams();
     const [dish, setDish] = useState(null);
+    const [quantity, setQuantity] = useState(1);
     const [notFound, setNotFound] = useState(false);
 
     useEffect(() => {
@@ -18,6 +19,9 @@ const DishDetails = () => {
         }
     }, [slug]);
 
+    const handleAddToCart = () => {
+        addToCart({ ...dish, quantity });
+    };
     if (notFound) {
         return <NotFound />;
     }
@@ -33,7 +37,11 @@ const DishDetails = () => {
                         <h1>{dish.name}</h1>
                         <p>{dish.description}</p>
                         <p>{dish.price}€</p>
-                        <Button variant="primary">Commander</Button>
+                        <div>
+                            <label>Quantité:</label>
+                            <input type="number" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value))} />
+                        </div>
+                        <Button className="my-3" variant="primary" onClick={handleAddToCart}>Ajouter au panier</Button>
                     </Col>
                 </Row>
             ) : (
