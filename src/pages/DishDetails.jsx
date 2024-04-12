@@ -2,24 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import dishesData from '../datas/dishes.json';
+import NotFound from './NotFound';
 
 const DishDetails = ({ addToCart }) => {
     const { slug } = useParams();
     const [dish, setDish] = useState(null);
     const [quantity, setQuantity] = useState(1);
+    const [notFound, setNotFound] = useState(false);
 
     useEffect(() => {
         const foundDish = dishesData.dishes.find(d => d.slug === slug);
         if (foundDish) {
             setDish(foundDish);
         } else {
-            setDish(null);
+            setNotFound(true);
         }
     }, [slug]);
 
     const handleAddToCart = () => {
         addToCart({ ...dish, quantity });
     };
+    if (notFound) {
+        return <NotFound />;
+    }
 
     return (
         <Container>
