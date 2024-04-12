@@ -3,9 +3,10 @@ import { useParams } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import dishesData from '../datas/dishes.json';
 
-const DishDetails = () => {
+const DishDetails = ({ addToCart }) => {
     const { slug } = useParams();
     const [dish, setDish] = useState(null);
+    const [quantity, setQuantity] = useState(1);
 
     useEffect(() => {
         const foundDish = dishesData.dishes.find(d => d.slug === slug);
@@ -15,6 +16,10 @@ const DishDetails = () => {
             setDish(null);
         }
     }, [slug]);
+
+    const handleAddToCart = () => {
+        addToCart({ ...dish, quantity });
+    };
 
     return (
         <Container>
@@ -27,7 +32,11 @@ const DishDetails = () => {
                         <h1>{dish.name}</h1>
                         <p>{dish.description}</p>
                         <p>{dish.price}€</p>
-                        <Button variant="primary">Commander</Button>
+                        <div>
+                            <label>Quantité:</label>
+                            <input type="number" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value))} />
+                        </div>
+                        <Button className="my-3" variant="primary" onClick={handleAddToCart}>Ajouter au panier</Button>
                     </Col>
                 </Row>
             ) : (
@@ -35,7 +44,7 @@ const DishDetails = () => {
                     <p>Aucun plat trouvé...</p>
                 </Row>
             )}
-    </Container>
+        </Container>
     );
 }
 
