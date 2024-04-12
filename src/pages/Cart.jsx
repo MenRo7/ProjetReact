@@ -1,6 +1,9 @@
 import React from 'react';
+import { useCart } from '../utils/context/CartContext';
 
-const Cart = ({ cart }) => {
+const Cart = () => {
+    const { cart } = useCart();
+
     return (
         <div className="container">
             <h1 className="text-center">Panier</h1>

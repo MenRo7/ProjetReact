@@ -4,10 +4,10 @@ import Footer from "./Footer";
 import { Outlet } from "react-router-dom";
 
 
-const Layout = ({ children, cart }) => {
+const Layout = () => {
 	return (
 		<>
-			<Header cart={cart} />
+			<Header />
 
 			<main>
 				<Outlet />
