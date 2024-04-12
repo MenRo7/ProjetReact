@@ -2,19 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import dishesData from '../datas/dishes.json';
+import NotFound from './NotFound';
 
 const DishDetails = () => {
     const { slug } = useParams();
     const [dish, setDish] = useState(null);
+    const [notFound, setNotFound] = useState(false);
 
     useEffect(() => {
         const foundDish = dishesData.dishes.find(d => d.slug === slug);
         if (foundDish) {
             setDish(foundDish);
         } else {
-            setDish(null);
+            setNotFound(true);
         }
     }, [slug]);
+
+    if (notFound) {
+        return <NotFound />;
+    }
 
     return (
         <Container>
@@ -35,7 +41,7 @@ const DishDetails = () => {
                     <p>Aucun plat trouvé...</p>
                 </Row>
             )}
-    </Container>
+        </Container>
     );
 }
 
