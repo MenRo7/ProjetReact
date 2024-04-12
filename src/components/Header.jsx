@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import logo from '../assets/images/logo.webp';
 import '../assets/style/header.css';
+import { useCart } from '../utils/context/CartContext';
 
-const Header = ({ cart }) => {
+const Header = () => {
+    const { cart } = useCart();
     const [cartItemCount, setCartItemCount] = useState(0);
 
-    console.log(cart);
-
     useEffect(() => {
-        const itemCount = cart ? cart.reduce((total, item) => total + item.quantity, 0) : 0;
+        const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
         setCartItemCount(itemCount);
     }, [cart]);
 

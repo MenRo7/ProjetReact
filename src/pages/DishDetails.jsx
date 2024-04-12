@@ -3,12 +3,14 @@ import { useParams } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import dishesData from '../datas/dishes.json';
 import NotFound from './NotFound';
+import { useCart } from '../utils/context/CartContext';
 
-const DishDetails = ({ addToCart }) => {
+const DishDetails = () => {
     const { slug } = useParams();
     const [dish, setDish] = useState(null);
     const [quantity, setQuantity] = useState(1);
     const [notFound, setNotFound] = useState(false);
+    const { addToCart } = useCart();
 
     useEffect(() => {
         const foundDish = dishesData.dishes.find(d => d.slug === slug);
@@ -20,7 +22,8 @@ const DishDetails = ({ addToCart }) => {
     }, [slug]);
 
     const handleAddToCart = () => {
-        addToCart({ ...dish, quantity });
+        dish.quantity = quantity;
+        addToCart(dish);
     };
     if (notFound) {
         return <NotFound />;
