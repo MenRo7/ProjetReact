@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import logo from '../assets/images/logo.webp';
 import '../assets/style/header.css';
 import { useCart } from '../utils/context/CartContext';
+import useCartItemCount from '../utils/hooks/useCartItemCount';
 
 const Header = () => {
     const { cart } = useCart();
-    const [cartItemCount, setCartItemCount] = useState(0);
-
-    useEffect(() => {
-        const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
-        setCartItemCount(itemCount);
-    }, [cart]);
+    const itemCount = useCartItemCount(cart);
 
     return (
         <header>
@@ -27,7 +23,7 @@ const Header = () => {
                             <NavLink className="nav-link" to="/about">À propos</NavLink>
                             <NavLink className="nav-link" to="/cart">
                                 Panier 
-                                <span className="cart-count"> ({cartItemCount})</span>
+                                <span className="cart-count"> ({itemCount})</span>
                             </NavLink>
                         </Nav>
                     </Navbar.Collapse>
